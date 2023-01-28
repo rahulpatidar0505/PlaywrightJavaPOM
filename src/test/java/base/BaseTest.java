@@ -6,6 +6,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.ProductPage;
 
 import java.util.Properties;
 
@@ -15,6 +16,7 @@ public class BaseTest {
     protected Properties prop;
     protected HomePage homePage;
     protected LoginPage loginPage;
+    protected ProductPage productPage;
     PlaywrightFactory pf;
 
     //	@Parameters({ "browser" })
@@ -40,6 +42,7 @@ public class BaseTest {
         page = pf.initBrowser(prop);
         loginPage = new LoginPage(page);
         homePage = new HomePage(page);
+        productPage = new ProductPage(page);
     }
 
     @AfterTest

@@ -18,7 +18,7 @@ public class LoginPage {
 		this.signInLink =  page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Sign In"));
 		this.email = page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Email*"));
 		this.password = page.getByLabel("Password");
-		this.signInButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign In"));
+		this.signInButton = page.locator("//fieldset[@class='fieldset login']//span[contains(text(),'Sign In')]");
 
 	}
 
@@ -26,7 +26,11 @@ public class LoginPage {
 		this.signInLink.click();
 		this.email.fill(appUserName);
 		this.password.fill(appPassword);
-		this.signInButton.waitFor();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 		this.signInButton.click();
 	}
 
