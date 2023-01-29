@@ -12,7 +12,7 @@ public class LoginPageTest extends BaseTest {
         assertThat(page).hasTitle(Pattern.compile("Home Page - Magento eCommerce - website to practice selenium"));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, dependsOnMethods = { "loginPageTitleTest" })
     public void loginPageUrlTest() {
         assertThat(page).hasURL(Pattern.compile(".*magento"));
     }
