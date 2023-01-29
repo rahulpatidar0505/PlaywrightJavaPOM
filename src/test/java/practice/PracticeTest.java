@@ -14,14 +14,10 @@ public class PracticeTest {
     @BeforeTest
     public void launchApplication() {
         playwright = Playwright.create();
-
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
                 .setHeadless(false));
-
         context = browser.newContext();
-        
         page = context.newPage();
-
         page.navigate("https://rahulshettyacademy.com/AutomationPractice/");
     }
 
@@ -45,6 +41,11 @@ public class PracticeTest {
         page.locator("//div[text()='India']").click();
     }
 
+    @Test
+    public void handleMouseOver() {
+        this.page.getByText("Mouse Hover").last().hover();
+        page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Top")).click();
+    }
     @Test
     public void Test() {
 

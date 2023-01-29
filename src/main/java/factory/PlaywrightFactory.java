@@ -52,7 +52,7 @@ public class PlaywrightFactory {
         return base64Path;
     }
 
-    public Browser initBrowser(Properties prop) {
+    public Page initBrowser(Properties prop) {
 
         String browserName = prop.getProperty("browser").trim();
         System.out.println("browser name is : " + browserName);
@@ -71,12 +71,10 @@ public class PlaywrightFactory {
                 tlBrowser.set(getPlaywright().webkit().launch(new BrowserType.LaunchOptions().setHeadless(false)));
                 break;
             case "chrome":
-                tlBrowser.set(
-                        getPlaywright().chromium().launch(new LaunchOptions().setChannel("chrome").setHeadless(false)));
+                tlBrowser.set(getPlaywright().chromium().launch(new LaunchOptions().setChannel("chrome").setHeadless(false)));
                 break;
             case "edge":
-                tlBrowser.set(
-                        getPlaywright().chromium().launch(new LaunchOptions().setChannel("msedge").setHeadless(false)));
+                tlBrowser.set(getPlaywright().chromium().launch(new LaunchOptions().setChannel("msedge").setHeadless(false)));
                 break;
 
             default:
@@ -84,19 +82,19 @@ public class PlaywrightFactory {
                 break;
         }
 
-//        tlBrowserContext.set(getBrowser().newContext());
-//        tlPage.set(getBrowserContext().newPage());
-//        getPage().navigate(prop.getProperty("url").trim());
-        return getBrowser();
-
-    }
-
-    public Page initPage(Properties prop) {
         tlBrowserContext.set(getBrowser().newContext());
         tlPage.set(getBrowserContext().newPage());
         getPage().navigate(prop.getProperty("url").trim());
         return getPage();
+
     }
+
+//    public Page initPage(Properties prop) {
+//        tlBrowserContext.set(getBrowser().newContext());
+//        tlPage.set(getBrowserContext().newPage());
+//        getPage().navigate(prop.getProperty("url").trim());
+//        return getPage();
+//    }
 
     /**
      * this method is used to initialize the properties from config file

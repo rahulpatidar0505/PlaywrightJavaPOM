@@ -39,12 +39,12 @@ public class BaseTest {
 //
 //	}
 
-    @BeforeSuite
-    public void setBrowser() {
-        pf = new PlaywrightFactory();
-        prop = pf.init_prop();
-        browser = pf.initBrowser(prop);
-    }
+//    @BeforeSuite
+//    public void setBrowser() {
+//        pf = new PlaywrightFactory();
+//        prop = pf.init_prop();
+//        page = pf.initBrowser(prop);
+//    }
 
     /**
      Playwright has the concept of a BrowserContext which is an in-memory isolated browser profile.
@@ -55,7 +55,10 @@ public class BaseTest {
      */
     @BeforeTest
     public void setPage() {
-        page = pf.initPage(prop);
+        pf = new PlaywrightFactory();
+        prop = pf.init_prop();
+        page = pf.initBrowser(prop);
+//        page = pf.initPage(prop);
         loginPage = new LoginPage(page);
         homePage = new HomePage(page);
         productPage = new ProductPage(page);
@@ -63,12 +66,12 @@ public class BaseTest {
 
     @AfterTest
     public void closePage() {
-        page.context().close();
+        page.context().browser().close();
     }
 
-    @AfterSuite
-    public void closeBrowser() {
-        browser.close();
-    }
+//    @AfterSuite
+//    public void closeBrowser() {
+//        browser.close();
+//    }
 
 }

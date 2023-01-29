@@ -12,9 +12,6 @@ public class ProductPage {
     private final Locator lc_bottoms;
     private final Locator lc_pants;
     private final Locator lc_productAddedMsg;
-    private final Locator productList;
-    private final Locator productSizeList;
-    private final Locator productColorList;
     private final Locator lc_addToCartButton;
     private final Locator lc_cartLink;
     private final Locator lc_checkout;
@@ -30,9 +27,6 @@ public class ProductPage {
         this.lc_bottoms = page.locator("//a[contains(@href,'bottoms-men.html')]//span[contains(text(),'Bottoms')]");
         this.lc_pants = page.locator("//a[contains(@href,'pants-men.html')]//span[contains(text(),'Pants')]");
         this.lc_productAddedMsg = page.locator("//div[@data-bind='html: $parent.prepareMessageForHtml(message.text)']");
-        this.productList = page.locator(".product.name.product-item-name");
-        this.productSizeList = page.locator("//div[@class='swatch-option text'][@role='option']");
-        this.productColorList = page.locator("//div[@class='swatch-option color']");
         this.lc_addToCartButton = page.locator("//span[normalize-space()='Add to Cart']");
         this.lc_cartLink = page.locator("//a[@class='action showcart']");
         this.lc_checkout = page.locator("//button[@id='top-cart-btn-checkout']");
@@ -50,10 +44,13 @@ public class ProductPage {
     }
 
     public void selectJacket() {
-//        this.page.getByText("Men").first().hover();
         this.lc_men.hover();
         this.lc_tops.hover();
         this.lc_jackets.click();
+//        this.page.getByText("Men").first().hover();
+//        this.page.getByLabel("Men").nth(2).focus();
+//        page.getByRole(AriaRole.LISTITEM).getByRole(AriaRole.LINK, new Locator.GetByRoleOptions().setName("Men")).last().hover();
+//        this.lc_jackets.click(new Locator.ClickOptions().setForce(true));
     }
 
     public void selectPant() {

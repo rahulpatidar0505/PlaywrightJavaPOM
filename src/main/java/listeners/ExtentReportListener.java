@@ -17,7 +17,7 @@ import static factory.PlaywrightFactory.takeScreenshot;
 
 public class ExtentReportListener implements ITestListener {
 
-    private static final String OUTPUT_FOLDER = "./build/";
+    private static final String OUTPUT_FOLDER = "./Reports/";
     private static final String FILE_NAME = "TestExecutionReport.html";
     public static ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();
     private static ExtentReports extentReports;
@@ -26,12 +26,10 @@ public class ExtentReportListener implements ITestListener {
     private static ExtentReports init() {
 
         Path path = Paths.get(OUTPUT_FOLDER);
-        // if directory exists?
         if (!Files.exists(path)) {
             try {
                 Files.createDirectories(path);
             } catch (IOException e) {
-                // fail to create directory
                 e.printStackTrace();
             }
         }
@@ -41,12 +39,10 @@ public class ExtentReportListener implements ITestListener {
         reporter.config().setReportName("Open Cart Automation Test Results");
         extentReports.attachReporter(reporter);
         extentReports.setSystemInfo("System", "MAC");
-        extentReports.setSystemInfo("Author", "Naveen AutomationLabs");
+        extentReports.setSystemInfo("Author", "Rahul Patidar");
         extentReports.setSystemInfo("Build#", "1.1");
-        extentReports.setSystemInfo("Team", "OMS");
-        extentReports.setSystemInfo("Customer Name", "NAL");
-
-        //extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
+        extentReports.setSystemInfo("Team", "Test");
+        extentReports.setSystemInfo("Customer Name", "NA");
 
         return extentReports;
     }
@@ -77,10 +73,6 @@ public class ExtentReportListener implements ITestListener {
                 result.getMethod().getDescription());
 
         extentTest.assignCategory(result.getTestContext().getSuite().getName());
-        /*
-         * methodName = StringUtils.capitalize(StringUtils.join(StringUtils.
-         * splitByCharacterTypeCamelCase(methodName), StringUtils.SPACE));
-         */
         extentTest.assignCategory(className);
         test.set(extentTest);
         test.get().getModel().setStartTime(getTime(result.getStartMillis()));
