@@ -42,6 +42,7 @@ public class HomePage {
 
 	public void editAddress() {
 		page.locator(panelView).waitFor();
+		page.hover(panelView);
 		page.click(panelView);
 		this.myAccount.click();
 		this.editAddressLink.first().click();

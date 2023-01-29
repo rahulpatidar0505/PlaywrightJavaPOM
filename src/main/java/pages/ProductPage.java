@@ -50,6 +50,7 @@ public class ProductPage {
     }
 
     public void selectJacket() {
+//        this.page.getByText("Men").first().hover();
         this.lc_men.hover();
         this.lc_tops.hover();
         this.lc_jackets.click();

@@ -52,7 +52,7 @@ public class PlaywrightFactory {
         return base64Path;
     }
 
-    public Page initBrowser(Properties prop) {
+    public Browser initBrowser(Properties prop) {
 
         String browserName = prop.getProperty("browser").trim();
         System.out.println("browser name is : " + browserName);
@@ -84,11 +84,18 @@ public class PlaywrightFactory {
                 break;
         }
 
+//        tlBrowserContext.set(getBrowser().newContext());
+//        tlPage.set(getBrowserContext().newPage());
+//        getPage().navigate(prop.getProperty("url").trim());
+        return getBrowser();
+
+    }
+
+    public Page initPage(Properties prop) {
         tlBrowserContext.set(getBrowser().newContext());
         tlPage.set(getBrowserContext().newPage());
         getPage().navigate(prop.getProperty("url").trim());
         return getPage();
-
     }
 
     /**
